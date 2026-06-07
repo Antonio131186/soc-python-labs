@@ -1,0 +1,21 @@
+=== Brute Force Detector v2 ===
+total eventos analizados : 18
+Failed logins detectados: 15
+Success logins detectados: 3
+
+ Failed logins por IP:
+192.168.1.50 -> 7 intentos fallidos
+10.0.0.23 -> 5 intentos fallidos
+203.0.113.10 -> 2 intentos fallidos
+172.16.5.14 -> 1 intentos fallidos
+
+ Failed logins por usuario:
+admin -> 5 intentos fallidos
+root -> 3 intentos fallidos
+antonio -> 3 intentos fallidos
+guest -> 2 intentos fallidos
+test -> 1 intentos fallidos
+
+ IPs sospechosas Umbral >= 5
+ALERTA:192.168.1.50 -> 7 intentos fallidos
+ALERTA:10.0.0.23 -> 5 intentos fallidos

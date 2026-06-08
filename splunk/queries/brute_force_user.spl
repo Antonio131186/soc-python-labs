@@ -1,0 +1,3 @@
+index=soc_lab sourcetype=auth_logs event=FAILED_LOGIN
+| stats count as failed_attempts by user
+| sort - failed_attempts

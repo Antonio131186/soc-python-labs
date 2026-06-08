@@ -1,0 +1,4 @@
+index=soc_lab sourcetype=auth_logs event=FAILED_LOGIN
+| stats count as failed_attempts by src_ip
+| where failed_attempts >= 5
+| sort - failed_attempts

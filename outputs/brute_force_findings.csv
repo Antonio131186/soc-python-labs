@@ -1,0 +1,7 @@
+src_ip,total_events,failed_attempts,successful_attempts,severity,recommendation
+192.168.1.50,7,7,0,High,Immediate review: possible brute force activity.
+10.0.0.23,5,5,0,Medium,Review source IP and correlate with authentication timeline.
+203.0.113.10,2,2,0,Low,Monitor activity and validate if behavior repeats.
+172.16.5.14,2,1,1,Low,Monitor activity and validate if behavior repeats.
+192.168.1.77,1,0,1,Low,Monitor activity and validate if behavior repeats.
+192.168.1.88,1,0,1,Low,Monitor activity and validate if behavior repeats.

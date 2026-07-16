@@ -1,4 +1,5 @@
 from pathlib import Path
+import sys
 import pandas as pd
 
 INPUT_FILE = Path('outputs/parsed_auth_events.csv')
@@ -26,7 +27,21 @@ def assign_recommendation(severity: str) -> str:
     return 'Monitor activity and validate if behavior repeats.' 
 
 def main() -> None:
-    df = pd.read_csv(INPUT_FILE)
+    if not INPUT_FILE.exists():
+        print(f'Error:input file not found -> {INPUT_FILE}')
+        sys.exit(1)
+
+    try:
+        df = pd.read_csv(INPUT_FILE)
+    except pd.errors.EmptyDataError:
+        print(f'Error: input file is empty -> {INPUT_FILE}')
+        sys.exit(1)
+    except Execption as e:
+        print(f'Error reading input file: {e}')
+        sys.exit(1)
+    if df.empty:
+        print(f'Error: input file is empty -> {INPUT_FILE}')
+        sys.exit(0)
 
     failed_df = df[df['event'] == 'FAILED_LOGIN'].copy()
     success_df = df[df['event'] == 'SUCCESS_LOGIN'].copy()

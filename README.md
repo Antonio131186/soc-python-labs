@@ -56,7 +56,7 @@ splunk/
 docs/
   Technical notes and documentation
 
-screenshots/
+splunk/screenshots/
   Visual evidence for portfolio documentation
 ```
 
@@ -111,12 +111,16 @@ This project demonstrates the ability to:
 
 ## Status
 
-Work in progress.
+Actively maintained — Lab 01 core logic complete and tested.
+
+Completed:
+* Core brute force detection logic with severity classification.
+* Error handling for missing, empty or corrupted input files.
+* Previous script iterations preserved in `scripts/archive/` for reference.
 
 Planned improvements:
-
 * Add SOC incident report in Markdown.
-* Add data quality validation.
-* Add more detection use cases.
-* Add Splunk dashboard/search examples.
+* Add logging module for execution tracking.
+* Add argparse for configurable input/output paths.
+* Add docstrings to all functions.
 * Add visual evidence and portfolio screenshots.

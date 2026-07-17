@@ -1,0 +1,71 @@
+<dashboard version="1.1" theme="dark">
+  <label>SOC Brute Force Detection Dashboard</label>
+  <row>
+    <panel>
+      <single>
+        <title>Total Events Analyzed</title>
+        <search>
+          <query>source="parsed_auth_events.csv" 
+| stats count as total_events</query>
+          <earliest>0</earliest>
+          <latest></latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="refresh.display">progressbar</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>High Severity IPs</title>
+        <search>
+          <query>source="parsed_auth_events.csv" event="FAILED_LOGIN"
+| stats count as failed_attempts by src_ip
+| where failed_attempts&gt;=7
+| stats count as high_severity_ips</query>
+          <earliest>0</earliest>
+          <latest></latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </single>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Failed Login Attempts by IP &amp; Severity</title>
+      <table>
+        <search>
+          <query>source="parsed_auth_events.csv" event="FAILED_LOGIN" 
+| stats count as failed_attempts by src_ip
+| eval severity=case(
+failed_attempts&gt;=7, "High",
+failed_attempts&gt;=5, "Medium",
+1=1, "Low")
+| sort - failed_attempts</query>
+          <earliest>0</earliest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="count">20</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="percentagesRow">false</option>
+        <option name="rowNumbers">false</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+    </row>
+    <row>
+  <panel>
+    <html>
+      <h2>Conclusiones y Recomendaciones</h2>
+      <ul>
+        <li>La IP <b>192.168.1.50</b> concentra el mayor volumen de intentos fallidos (7), superando el umbral de severidad <b>High</b>.</li>
+        <li>1 de las 4 IPs analizadas (25%) requiere revisión inmediata por posible actividad de fuerza bruta.</li>
+        <li><b>Recomendación:</b> aplicar bloqueo temporal o revisión manual a IPs con severidad High antes de que deriven en un acceso comprometido exitoso.</li>
+      </ul>
+    </html>
+  </panel>
+</row>
+</dashboard>

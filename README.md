@@ -37,23 +37,30 @@ SOC report / SIEM use case / dashboard
 
 ## Repository Structure
 
-```Actively maintained — Lab 01 core logic complete and tested.
+```text
+data/
+  logs/        Sample authentication logs
 
-Completed:
-* Core brute force detection logic with severity classification.
-* Error handling for missing, empty or corrupted input files.
-* Previous script iterations preserved in `scripts/archive/` for reference.
-* Logging module for execution tracking (INFO/WARNING/ERROR, file + console).
-* Argparse for configurable input/output paths.
-* Docstrings on all functions.
-* Execution evidence (log + findings CSV screenshots) in `scripts/screenshots/`.
-* SOC-style incident report (`reports/incident_report_ssh_bruteforce.md`).
+scripts/
+  Python scripts for log parsing and detection
 
-Planned improvements:
-* Time-window analysis to distinguish rapid brute force bursts from scattered failed logins.
-* IP geolocation / reputation enrichment.
-* Unit tests for detection logic.
-* MITRE ATT&CK mapping for documented cases.
+scripts/screenshots/
+  Execution evidence (log output, findings CSV)
+
+outputs/
+  Generated structured datasets and detection findings
+
+reports/
+  SOC reports and incident-style analysis outputs
+
+splunk/
+  SPL queries and SIEM-oriented detection logic
+
+docs/
+  Technical notes and documentation
+
+splunk/screenshots/
+  Visual evidence for portfolio documentation
 ```
 
 ## Tools and Technologies
@@ -113,10 +120,14 @@ Completed:
 * Core brute force detection logic with severity classification.
 * Error handling for missing, empty or corrupted input files.
 * Previous script iterations preserved in `scripts/archive/` for reference.
+* Logging module for execution tracking (INFO/WARNING/ERROR, file + console).
+* Argparse for configurable input/output paths.
+* Docstrings on all functions.
+* Execution evidence (log + findings CSV screenshots) in `scripts/screenshots/`.
+* SOC-style incident report (`reports/incident_report_ssh_bruteforce.md`).
 
 Planned improvements:
-* Add SOC incident report in Markdown.
-* Add logging module for execution tracking.
-* Add argparse for configurable input/output paths.
-* Add docstrings to all functions.
-* Add visual evidence and portfolio screenshots.
+* Time-window analysis to distinguish rapid brute force bursts from scattered failed logins.
+* IP geolocation / reputation enrichment.
+* Unit tests for detection logic.
+* MITRE ATT&CK mapping for documented cases.
